@@ -79,6 +79,28 @@
     <script>
         // 初始化 Lucide 圖示
         lucide.createIcons();
-    </script>
+    // 新增計時器邏輯
+    let timer;
+    let seconds = 0;
+    const timeDisplay = document.querySelector('.text-3xl.font-mono');
+    const startBtn = document.querySelector('button.bg-green-500');
+
+    startBtn.addEventListener('click', () => {
+        if (startBtn.innerText === '開始計時') {
+            startBtn.innerText = '停止計時';
+            startBtn.classList.replace('bg-green-500', 'bg-red-500');
+            timer = setInterval(() => {
+                seconds++;
+                let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+                let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+                let secs = String(seconds % 60).padStart(2, '0');
+                timeDisplay.innerText = `${hrs}:${mins}:${secs}`;
+            }, 1000);
+        } else {
+            startBtn.innerText = '開始計時';
+            startBtn.classList.replace('bg-red-500', 'bg-green-500');
+            clearInterval(timer);
+        }
+    });</script>
 </body>
 </html>
