@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* 增加平滑過渡效果 */
         .transition-all { transition: all 0.3s ease; }
     </style>
 </head>
@@ -67,7 +66,9 @@
                     <button id="timerBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95">
                         開始計時
                     </button>
-                </div><div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
                     <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
                         <i data-lucide="upload-cloud" class="text-blue-500"></i> 檔案上傳 (POC)
                     </h3>
@@ -89,19 +90,7 @@
                         <div class="grid grid-cols-7 text-[10px] font-bold text-gray-400 mb-2 uppercase tracking-tighter">
                             <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
                         </div>
-                        <div id="calendarDays" class="grid grid-cols-7 gap-1 text-sm">
-                            </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
-                        <i data-lucide="upload-cloud" class="text-blue-500"></i> 檔案上傳 (POC)
-                    </h3>
-                    <input type="file" id="fileInput" class="hidden">
-                    <div id="dropZone" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-blue-400 hover:bg-blue-50 transition-all group cursor-pointer">
-                        <i data-lucide="plus" class="mx-auto text-gray-300 group-hover:text-blue-500 transition-colors"></i>
-                        <p id="fileStatus" class="text-xs text-gray-400 mt-2 font-medium">點擊選擇檔案</p>
+                        <div id="calendarDays" class="grid grid-cols-7 gap-1 text-sm"></div>
                     </div>
                 </div>
             </div>
@@ -109,88 +98,78 @@
     </main>
 
     <script>
-    // 1. 初始化圖示
-    lucide.createIcons();
+        // 1. 初始化圖示
+        lucide.createIcons();
 
-    // 2. 計時器邏輯
-    let timer;
-    let seconds = 0;
-    const timerText = document.getElementById('timerText');
-    const timerBtn = document.getElementById('timerBtn');
+        // 2. 計時器邏輯
+        let timer;
+        let seconds = 0;
+        const timerText = document.getElementById('timerText');
+        const timerBtn = document.getElementById('timerBtn');
 
-    timerBtn.addEventListener('click', () => {
-        if (timerBtn.innerText === '開始計時') {
-            timerBtn.innerText = '停止計時';
-            timerBtn.className = 'w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
+        timerBtn.addEventListener('click', () => {
+            if (timerBtn.innerText === '開始計時') {
+                timerBtn.innerText = '停止計時';
+                timerBtn.className = 'w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
+                timer = setInterval(() => {
+                    seconds++;
+                    let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+                    let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+                    let secs = String(seconds % 60).padStart(2, '0');
+                    timerText.innerText = `${hrs}:${mins}:${secs}`;
+                }, 1000);
+            } else {
+                timerBtn.innerText = '開始計時';
+                timerBtn.className = 'w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
+                clearInterval(timer);
+            }
+        });
+
+        // 3. 檔案上傳模擬邏輯
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileStatus = document.getElementById('fileStatus');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const fileName = e.target.files[0].name;
+                fileStatus.innerText = `已選取：${fileName}`;
+                fileStatus.classList.remove('text-gray-400');
+                fileStatus.classList.add('text-blue-600');
+                alert('模擬上傳成功：' + fileName);
+            }
+        });
+
+        // 4. 自動生成月曆邏輯
+        function generateCalendar() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+            const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
             
-            timer = setInterval(() => {
-                seconds++;
-                let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
-                let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-                let secs = String(seconds % 60).padStart(2, '0');
-                timerText.innerText = `${hrs}:${mins}:${secs}`;
-            }, 1000);
-        } else {
-            timerBtn.innerText = '開始計時';
-            timerBtn.className = 'w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
-            clearInterval(timer);
-        }
-    });
+            const monthElement = document.getElementById('calendarMonth');
+            if(monthElement) monthElement.innerText = `${year}年 ${monthNames[month]}`;
 
-    // 3. 檔案上傳模擬邏輯
-    const dropZone = document.getElementById('dropZone');
-    const fileInput = document.getElementById('fileInput');
-    const fileStatus = document.getElementById('fileStatus');
-
-    dropZone.addEventListener('click', () => fileInput.click());
-
-    fileInput.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) {
-            const fileName = e.target.files[0].name;
-            fileStatus.innerText = `已選取：${fileName}`;
-            // 這裡修正了 classList.replace 的用法
-            fileStatus.classList.remove('text-gray-400');
-            fileStatus.classList.add('text-blue-600');
-            alert('模擬上傳成功：' + fileName);
-        }
-    });
-
-    // 4. 自動生成月曆邏輯 (獨立放在外面)
-    function generateCalendar() {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth();
-        const today = now.getDate();
-
-        const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
-        const monthElement = document.getElementById('calendarMonth');
-        if(monthElement) monthElement.innerText = `${year}年 ${monthNames[month]}`;
-
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const calendarDays = document.getElementById('calendarDays');
-        
-        if(!calendarDays) return;
-        calendarDays.innerHTML = '';
-
-        for (let i = 0; i < firstDay; i++) {
-            calendarDays.innerHTML += `<div></div>`;
-        }
-
-        for (let d = 1; d <= daysInMonth; d++) {
-            const isToday = d === today 
-                ? 'bg-blue-600 text-white shadow-md font-bold' 
-                : 'text-gray-700 hover:bg-blue-50';
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const calendarDays = document.getElementById('calendarDays');
             
-            calendarDays.innerHTML += `
-                <div class="aspect-square flex items-center justify-center rounded-full cursor-pointer transition-colors ${isToday}">
-                    ${d}
-                </div>`;
+            if(!calendarDays) return;
+            calendarDays.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                calendarDays.innerHTML += `<div></div>`;
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const isToday = d === today ? 'bg-blue-600 text-white shadow-md font-bold' : 'text-gray-700 hover:bg-blue-50';
+                calendarDays.innerHTML += `<div class="aspect-square flex items-center justify-center rounded-full cursor-pointer transition-colors ${isToday}">${d}</div>`;
+            }
         }
-    }
-    
-    // 啟動月曆
-    generateCalendar();
-</script>
+        generateCalendar();
+    </script>
 </body>
 </html>
