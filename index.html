@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRI-IA | 台玻鹿港廠 POC 專案管理</title>
+    <title>TRI-IA | 台玻鹿港廠 專案管理系統</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -11,43 +11,52 @@
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
-    <nav class="bg-blue-700 text-white p-4 shadow-lg flex justify-between items-center">
-        <h1 class="text-xl font-bold tracking-tight">TRI-IA 專案管理系統 (鹿港廠 POC)</h1>
+    <nav class="bg-slate-800 text-white p-4 shadow-lg flex justify-between items-center">
+        <h1 class="text-xl font-bold tracking-tight flex items-center gap-2">
+            <i data-lucide="shield-check" class="text-blue-400"></i>
+            TRI-IA 專案管理系統 (鹿港廠正式案)
+        </h1>
         <div class="flex items-center gap-4">
-            <span class="text-sm opacity-80">Frank.Chang</span>
-            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center border-2 border-white font-bold">FC</div>
+            <div class="text-right hidden sm:block">
+                <p class="text-xs opacity-70 leading-none">系統管理員</p>
+                <p class="text-sm font-medium">Frank.Chang</p>
+            </div>
+            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center border-2 border-slate-700 font-bold shadow-inner">FC</div>
         </div>
     </nav>
 
     <main class="p-6 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
-                <p class="text-gray-500 text-sm font-medium">進行中任務</p>
-                <p class="text-2xl font-bold">3</p>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-600 hover:shadow-md transition-all">
+                <p class="text-slate-500 text-sm font-medium">進行中任務</p>
+                <p class="text-2xl font-bold text-slate-800">3</p>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-500">
-                <p class="text-gray-500 text-sm font-medium">本週累計工時</p>
-                <p class="text-2xl font-bold">24.5 h</p>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-emerald-600 hover:shadow-md transition-all">
+                <p class="text-slate-500 text-sm font-medium">本週累計工時</p>
+                <p class="text-2xl font-bold text-slate-800">24.5 h</p>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-orange-500">
-                <p class="text-gray-500 text-sm font-medium">待處理附件</p>
-                <p class="text-2xl font-bold">5</p>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-amber-600 hover:shadow-md transition-all">
+                <p class="text-slate-500 text-sm font-medium">待處理附件</p>
+                <p class="text-2xl font-bold text-slate-800">5</p>
             </div>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1">
-                <h2 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-lg">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5 text-blue-600"></i> 任務看板
+                <h2 class="font-bold text-slate-700 mb-4 flex items-center gap-2 text-lg">
+                    <i data-lucide="trello" class="w-5 h-5 text-blue-600"></i> 任務看板
                 </h2>
-                <div class="bg-gray-200 p-4 rounded-xl min-h-[400px]">
-                    <div class="bg-white p-5 rounded-lg shadow-sm mb-4 hover:shadow-md transition-all cursor-pointer border-t-4 border-blue-400">
-                        <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded font-bold uppercase tracking-wider">開發中</span>
-                        <h3 class="font-bold mt-2 text-gray-800 text-lg">前端視覺介面優化</h3>
-                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">針對台玻內部需求調整 UI 顏色與數據顯示邏輯...</p>
-                        <div class="mt-5 pt-4 border-t flex justify-between items-center text-gray-400">
-                            <div class="flex items-center text-xs"><i data-lucide="paperclip" class="w-4 h-4 mr-1"></i> 2 附件</div>
-                            <div class="flex items-center text-xs text-red-500 font-bold bg-red-50 px-2 py-1 rounded">
+                <div class="bg-slate-200 p-4 rounded-xl min-h-[500px]">
+                    <div class="bg-white p-5 rounded-lg shadow-sm mb-4 hover:shadow-md transition-all cursor-pointer border-t-4 border-blue-500 group">
+                        <div class="flex justify-between items-start">
+                            <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded font-bold uppercase tracking-wider border border-blue-100">正式執行</span>
+                            <i data-lucide="more-horizontal" class="text-slate-300 group-hover:text-slate-500 w-4 h-4"></i>
+                        </div>
+                        <h3 class="font-bold mt-3 text-slate-800 text-lg">前端視覺介面優化</h3>
+                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">針對台玻內部需求調整 UI 顏色與數據顯示邏輯，確保正式環境穩定性...</p>
+                        <div class="mt-5 pt-4 border-t border-slate-50 flex justify-between items-center text-slate-400">
+                            <div class="flex items-center text-xs"><i data-lucide="paperclip" class="w-4 h-4 mr-1 text-slate-300"></i> 2 附件</div>
+                            <div class="flex items-center text-xs text-rose-600 font-bold bg-rose-50 px-2 py-1 rounded">
                                 <i data-lucide="clock" class="w-4 h-4 mr-1"></i> 02:15:40
                             </div>
                         </div>
@@ -57,41 +66,41 @@
 
             <div class="w-full lg:w-80 space-y-6">
                 
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
-                        <i data-lucide="calendar" class="text-blue-500"></i> 專案月曆
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+                    <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                        <i data-lucide="calendar-days" class="text-blue-500"></i> 專案月曆
                     </h3>
                     <div class="text-center">
                         <div class="flex justify-between items-center mb-4 px-2">
-                            <span id="calendarMonth" class="text-lg font-bold text-gray-800"></span>
+                            <span id="calendarMonth" class="text-lg font-bold text-slate-800"></span>
                         </div>
-                        <div class="grid grid-cols-7 text-[10px] font-bold text-gray-400 mb-2 uppercase tracking-tighter">
+                        <div class="grid grid-cols-7 text-[10px] font-black text-slate-400 mb-2 uppercase tracking-tighter">
                             <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
                         </div>
                         <div id="calendarDays" class="grid grid-cols-7 gap-1 text-sm"></div>
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+                    <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
                         <i data-lucide="timer" class="text-blue-500"></i> 即時計時器
                     </h3>
-                    <div class="text-center py-6 bg-gray-50 rounded-lg mb-4">
-                        <span id="timerText" class="text-4xl font-mono font-bold text-gray-800">00:00:00</span>
+                    <div class="text-center py-6 bg-slate-50 rounded-lg mb-4">
+                        <span id="timerText" class="text-4xl font-mono font-bold text-slate-800">00:00:00</span>
                     </div>
-                    <button id="timerBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95">
+                    <button id="timerBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95 shadow-emerald-100">
                         開始計時
                     </button>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
-                        <i data-lucide="upload-cloud" class="text-blue-500"></i> 檔案上傳 (POC)
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+                    <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                        <i data-lucide="cloud-upload" class="text-blue-500"></i> 檔案上傳
                     </h3>
                     <input type="file" id="fileInput" class="hidden">
-                    <div id="dropZone" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-blue-400 hover:bg-blue-50 transition-all group cursor-pointer">
-                        <i data-lucide="plus" class="mx-auto text-gray-300 group-hover:text-blue-500 transition-colors"></i>
-                        <p id="fileStatus" class="text-xs text-gray-400 mt-2 font-medium">點擊選擇檔案</p>
+                    <div id="dropZone" class="border-2 border-dashed border-slate-200 rounded-lg p-8 text-center hover:border-blue-400 hover:bg-blue-50 transition-all group cursor-pointer">
+                        <i data-lucide="plus" class="mx-auto text-slate-300 group-hover:text-blue-500 transition-colors"></i>
+                        <p id="fileStatus" class="text-xs text-slate-400 mt-2 font-medium">點擊選擇檔案上傳系統</p>
                     </div>
                 </div>
 
@@ -100,10 +109,9 @@
     </main>
 
     <script>
-        // 1. 初始化圖示
         lucide.createIcons();
 
-        // 2. 計時器邏輯
+        // 計時器邏輯
         let timer;
         let seconds = 0;
         const timerText = document.getElementById('timerText');
@@ -112,7 +120,7 @@
         timerBtn.addEventListener('click', () => {
             if (timerBtn.innerText === '開始計時') {
                 timerBtn.innerText = '停止計時';
-                timerBtn.className = 'w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
+                timerBtn.className = 'w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95 shadow-rose-100';
                 timer = setInterval(() => {
                     seconds++;
                     let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
@@ -122,53 +130,46 @@
                 }, 1000);
             } else {
                 timerBtn.innerText = '開始計時';
-                timerBtn.className = 'w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
+                timerBtn.className = 'w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95 shadow-emerald-100';
                 clearInterval(timer);
             }
         });
 
-        // 3. 檔案上傳模擬邏輯
+        // 檔案上傳邏輯
         const dropZone = document.getElementById('dropZone');
         const fileInput = document.getElementById('fileInput');
         const fileStatus = document.getElementById('fileStatus');
 
         if(dropZone) dropZone.addEventListener('click', () => fileInput.click());
-
         if(fileInput) fileInput.addEventListener('change', (e) => {
             if (e.target.files.length > 0) {
                 const fileName = e.target.files[0].name;
                 fileStatus.innerText = `已選取：${fileName}`;
-                fileStatus.classList.remove('text-gray-400');
-                fileStatus.classList.add('text-blue-600');
-                alert('模擬上傳成功：' + fileName);
+                fileStatus.className = 'text-xs text-blue-600 mt-2 font-bold';
+                alert('正式案模擬上傳成功：' + fileName);
             }
         });
 
-        // 4. 自動生成月曆邏輯
+        // 月曆邏輯
         function generateCalendar() {
             const now = new Date();
             const year = now.getFullYear();
             const month = now.getMonth();
             const today = now.getDate();
             const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
-            
             const monthElement = document.getElementById('calendarMonth');
             if(monthElement) monthElement.innerText = `${year}年 ${monthNames[month]}`;
-
             const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const calendarDays = document.getElementById('calendarDays');
-            
             if(!calendarDays) return;
             calendarDays.innerHTML = '';
-
             for (let i = 0; i < firstDay; i++) {
                 calendarDays.innerHTML += `<div></div>`;
             }
-
             for (let d = 1; d <= daysInMonth; d++) {
-                const isToday = d === today ? 'bg-blue-600 text-white shadow-md font-bold' : 'text-gray-700 hover:bg-blue-50';
-                calendarDays.innerHTML += `<div class="aspect-square flex items-center justify-center rounded-full cursor-pointer transition-colors ${isToday}">${d}</div>`;
+                const isToday = d === today ? 'bg-blue-600 text-white shadow-md font-bold scale-110' : 'text-slate-700 hover:bg-blue-50';
+                calendarDays.innerHTML += `<div class="aspect-square flex items-center justify-center rounded-full cursor-pointer transition-all ${isToday}">${d}</div>`;
             }
         }
         generateCalendar();
