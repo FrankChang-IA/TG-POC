@@ -6,45 +6,51 @@
     <title>TRI-IA | 台玻鹿港廠 POC 專案管理</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* 增加平滑過渡效果 */
+        .transition-all { transition: all 0.3s ease; }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans">
     <nav class="bg-blue-700 text-white p-4 shadow-lg flex justify-between items-center">
         <h1 class="text-xl font-bold tracking-tight">TRI-IA 專案管理系統 (鹿港廠 POC)</h1>
         <div class="flex items-center gap-4">
             <span class="text-sm opacity-80">Frank.Chang</span>
-            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center border-2 border-white">FC</div>
+            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center border-2 border-white font-bold">FC</div>
         </div>
     </nav>
 
     <main class="p-6 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
-                <p class="text-gray-500 text-sm">進行中任務</p>
+                <p class="text-gray-500 text-sm font-medium">進行中任務</p>
                 <p class="text-2xl font-bold">3</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-500">
-                <p class="text-gray-500 text-sm">本週累計工時</p>
+                <p class="text-gray-500 text-sm font-medium">本週累計工時</p>
                 <p class="text-2xl font-bold">24.5 h</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-orange-500">
-                <p class="text-gray-500 text-sm">待處理附件</p>
+                <p class="text-gray-500 text-sm font-medium">待處理附件</p>
                 <p class="text-2xl font-bold">5</p>
             </div>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1">
-                <h2 class="font-bold text-gray-700 mb-4 flex items-center gap-2">
-                    <i data-lucide="layout-dashboard"></i> 任務看板
+                <h2 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-lg">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 text-blue-600"></i> 任務看板
                 </h2>
                 <div class="bg-gray-200 p-4 rounded-xl min-h-[400px]">
-                    <div class="bg-white p-4 rounded-lg shadow-sm mb-4 hover:shadow-md transition cursor-pointer border-t-2 border-blue-400">
-                        <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded font-bold uppercase">開發中</span>
+                    <div class="bg-white p-5 rounded-lg shadow-sm mb-4 hover:shadow-md transition-all cursor-pointer border-t-4 border-blue-400">
+                        <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded font-bold uppercase tracking-wider">開發中</span>
                         <h3 class="font-bold mt-2 text-gray-800 text-lg">前端視覺介面優化</h3>
-                        <p class="text-gray-500 text-sm mt-1">針對台玻內部需求調整 UI 顏色...</p>
-                        <div class="mt-4 pt-4 border-t flex justify-between items-center">
-                            <div class="flex items-center text-xs text-gray-400"><i data-lucide="paperclip" class="w-3 h-3 mr-1"></i> 2</div>
-                            <div class="flex items-center text-xs text-red-500 font-bold"><i data-lucide="clock" class="w-3 h-3 mr-1"></i> 02:15:40</div>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">針對台玻內部需求調整 UI 顏色與數據顯示邏輯...</p>
+                        <div class="mt-5 pt-4 border-t flex justify-between items-center text-gray-400">
+                            <div class="flex items-center text-xs"><i data-lucide="paperclip" class="w-4 h-4 mr-1"></i> 2 附件</div>
+                            <div class="flex items-center text-xs text-red-500 font-bold bg-red-50 px-2 py-1 rounded">
+                                <i data-lucide="clock" class="w-4 h-4 mr-1"></i> 02:15:40
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,24 +58,25 @@
 
             <div class="w-full lg:w-80 space-y-6">
                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm">
-                        <i data-lucide="timer"></i> 即時計時器
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                        <i data-lucide="timer" class="text-blue-500"></i> 即時計時器
                     </h3>
-                    <div class="text-center py-4 bg-gray-50 rounded-lg mb-4">
-                        <span class="text-3xl font-mono font-bold text-gray-800">00:00:00</span>
+                    <div class="text-center py-6 bg-gray-50 rounded-lg mb-4">
+                        <span id="timerText" class="text-4xl font-mono font-bold text-gray-800">00:00:00</span>
                     </div>
-                    <button class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition shadow-lg shadow-green-100">
+                    <button id="timerBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95">
                         開始計時
                     </button>
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm">
-                        <i data-lucide="upload-cloud"></i> 檔案上傳 (POC)
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                        <i data-lucide="upload-cloud" class="text-blue-500"></i> 檔案上傳 (POC)
                     </h3>
-                    <div class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-blue-400 transition group cursor-pointer">
-                        <i data-lucide="plus" class="mx-auto text-gray-300 group-hover:text-blue-500"></i>
-                        <p class="text-xs text-gray-400 mt-2">拖曳檔案至此或點擊上傳</p>
+                    <input type="file" id="fileInput" class="hidden">
+                    <div id="dropZone" class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-blue-400 hover:bg-blue-50 transition-all group cursor-pointer">
+                        <i data-lucide="plus" class="mx-auto text-gray-300 group-hover:text-blue-500 transition-colors"></i>
+                        <p id="fileStatus" class="text-xs text-gray-400 mt-2 font-medium">點擊選擇檔案</p>
                     </div>
                 </div>
             </div>
@@ -77,30 +84,51 @@
     </main>
 
     <script>
-        // 初始化 Lucide 圖示
+        // 1. 初始化圖示
         lucide.createIcons();
-    // 新增計時器邏輯
-    let timer;
-    let seconds = 0;
-    const timeDisplay = document.querySelector('.text-3xl.font-mono');
-    const startBtn = document.querySelector('button.bg-green-500');
 
-    startBtn.addEventListener('click', () => {
-        if (startBtn.innerText === '開始計時') {
-            startBtn.innerText = '停止計時';
-            startBtn.classList.replace('bg-green-500', 'bg-red-500');
-            timer = setInterval(() => {
-                seconds++;
-                let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
-                let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-                let secs = String(seconds % 60).padStart(2, '0');
-                timeDisplay.innerText = `${hrs}:${mins}:${secs}`;
-            }, 1000);
-        } else {
-            startBtn.innerText = '開始計時';
-            startBtn.classList.replace('bg-red-500', 'bg-green-500');
-            clearInterval(timer);
-        }
-    });</script>
+        // 2. 計時器邏輯
+        let timer;
+        let seconds = 0;
+        const timerText = document.getElementById('timerText');
+        const timerBtn = document.getElementById('timerBtn');
+
+        timerBtn.addEventListener('click', () => {
+            if (timerBtn.innerText === '開始計時') {
+                // 開始計時
+                timerBtn.innerText = '停止計時';
+                timerBtn.className = 'w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
+                
+                timer = setInterval(() => {
+                    seconds++;
+                    let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+                    let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+                    let secs = String(seconds % 60).padStart(2, '0');
+                    timerText.innerText = `${hrs}:${mins}:${secs}`;
+                }, 1000);
+            } else {
+                // 停止計時
+                timerBtn.innerText = '開始計時';
+                timerBtn.className = 'w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95';
+                clearInterval(timer);
+            }
+        });
+
+        // 3. 檔案上傳模擬邏輯
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileStatus = document.getElementById('fileStatus');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const fileName = e.target.files[0].name;
+                fileStatus.innerText = `已選取：${fileName}`;
+                fileStatus.classList.replace('text-gray-400', 'text-blue-600');
+                alert('模擬上傳成功：' + fileName);
+            }
+        });
+    </script>
 </body>
 </html>
