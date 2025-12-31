@@ -56,6 +56,22 @@
             </div>
 
             <div class="w-full lg:w-80 space-y-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                        <i data-lucide="calendar" class="text-blue-500"></i> 專案月曆
+                    </h3>
+                    <div class="text-center">
+                        <div class="flex justify-between items-center mb-4 px-2">
+                            <span id="calendarMonth" class="text-lg font-bold text-gray-800"></span>
+                        </div>
+                        <div class="grid grid-cols-7 text-[10px] font-bold text-gray-400 mb-2 uppercase tracking-tighter">
+                            <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+                        </div>
+                        <div id="calendarDays" class="grid grid-cols-7 gap-1 text-sm"></div>
+                    </div>
+                </div>
+
                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
                     <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
                         <i data-lucide="timer" class="text-blue-500"></i> 即時計時器
@@ -79,20 +95,6 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
-                        <i data-lucide="calendar" class="text-blue-500"></i> 專案月曆
-                    </h3>
-                    <div class="text-center">
-                        <div class="flex justify-between items-center mb-4 px-2">
-                            <span id="calendarMonth" class="text-lg font-bold text-gray-800"></span>
-                        </div>
-                        <div class="grid grid-cols-7 text-[10px] font-bold text-gray-400 mb-2 uppercase tracking-tighter">
-                            <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
-                        </div>
-                        <div id="calendarDays" class="grid grid-cols-7 gap-1 text-sm"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
@@ -130,9 +132,9 @@
         const fileInput = document.getElementById('fileInput');
         const fileStatus = document.getElementById('fileStatus');
 
-        dropZone.addEventListener('click', () => fileInput.click());
+        if(dropZone) dropZone.addEventListener('click', () => fileInput.click());
 
-        fileInput.addEventListener('change', (e) => {
+        if(fileInput) fileInput.addEventListener('change', (e) => {
             if (e.target.files.length > 0) {
                 const fileName = e.target.files[0].name;
                 fileStatus.innerText = `已選取：${fileName}`;
